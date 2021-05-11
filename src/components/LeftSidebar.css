@@ -1,0 +1,49 @@
+.izq {
+  padding: 1em 0 0 0;
+  border-right: 1px solid #38444d;
+  transition: all 0.5s ease;
+}
+
+.izq__ul {
+  list-style: none;
+}
+
+.izq__svg {
+  width: 1.9em;
+  height: 1.9em;
+  fill: white;
+}
+
+.izq__li {
+  margin: 0 0 0.3em;
+  font-size: 1.2em;
+  font-weight: 900;
+  color: white;
+}
+
+.izq__li a {
+  padding: 0.5em 1em;
+  border-radius: 2em;
+  transition: all 0.5s ease;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  text-decoration: none;
+}
+.izq__li a:hover {
+  color: #1da1f2;
+  background: rgba(29, 160, 242, 0.194);
+}
+
+.izq__li a:hover svg {
+  fill: #1da1f2;
+}
+
+.izq__li svg {
+  width: 1.5em;
+  height: 1.5em;
+  fill: #1da1f2;
+  margin: 0 0.5em 0 0;
+  transition: all 0.5s ease;
+}
