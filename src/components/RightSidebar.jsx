@@ -1,7 +1,33 @@
 import SearchBox from "./SearchBox";
 import "./RightSidebar.css";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import logo from "../logo.svg";
 
 function RightSidebar() {
+  const [users, setUsers] = useState([]);
+
+  const user = useSelector((state) => state.userReducer);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const response = await axios.get(
+        "http://localhost:8080/api/index-users",
+        {
+          headers: {
+            Authorization: `token ${user.token}`,
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setUsers(response.data.users);
+    };
+    getUsers();
+  }, []);
+
   return (
     <div
       className="col-md-3 right-sidebar py-4"
@@ -20,7 +46,7 @@ function RightSidebar() {
                 <div>
                   <small>Tendencia en Uruguay</small>
                 </div>
-                <h6>FC Barcelona</h6>
+                <h6>Hack Academy</h6>
                 <div>
                   <small>1.72 M tweets</small>
                 </div>
@@ -34,7 +60,7 @@ function RightSidebar() {
                 <div>
                   <small>Tendencia en Uruguay</small>
                 </div>
-                <h6>FC Barcelona</h6>
+                <h6>BIOS</h6>
                 <div>
                   <small>1.72 M tweets</small>
                 </div>
@@ -48,7 +74,9 @@ function RightSidebar() {
                 <div>
                   <small>Tendencia en Uruguay</small>
                 </div>
-                <h6>FC Barcelona</h6>
+                <h6>
+                  Usar <code className="text-light">br</code>{" "}
+                </h6>
                 <div>
                   <small>1.72 M tweets</small>
                 </div>
@@ -63,52 +91,37 @@ function RightSidebar() {
             <div className="list-group-item d-flex align-items-center justify-content-between trending">
               <h4 className="fw-bold">A quién seguir</h4>
             </div>
-            <button className="list-group-item list-group-item d-flex justify-content-between align-items-center trending py-2">
-              <div className="d-flex">
-                <div>
-                  <img
-                    className="img-fluid rounded-circle"
-                    src="https://images.unsplash.com/photo-1618048094700-f4817c77838b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=824&q=80"
-                    alt="slkdjfskdfj"
-                    style={{ width: "50px", height: "50px" }}
-                  />
-                </div>
-                <div className="ms-1">
-                  <h6>Mila Kunis</h6>
-                  <div>
-                    <small>@milaK</small>
+            {users &&
+              users.map((user) => {
+                return (
+                  <div
+                    key={user.id}
+                    className="list-group-item list-group-item d-flex justify-content-between align-items-center trending py-2"
+                  >
+                    <div className="d-flex">
+                      <div>
+                        <img
+                          className="img-fluid rounded-circle"
+                          src={user.profilePicture ? user.profilePicture : logo}
+                          alt={user.userName}
+                          style={{ width: "50px", height: "50px" }}
+                        />
+                      </div>
+                      <div className="ms-1">
+                        <h6>{user.firstName + " " + user.lastName}</h6>
+                        <div>
+                          <small>@{user.userName}</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="d-flex align-items-start">
+                      <button className="rounded-pill px-3 py-1 follow-btn fw-bold">
+                        Seguir
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="d-flex align-items-start">
-                <button className="rounded-pill px-3 py-1 follow-btn fw-bold">
-                  Seguir
-                </button>
-              </div>
-            </button>
-            <button className="list-group-item list-group-item d-flex justify-content-between align-items-center trending py-2">
-              <div className="d-flex">
-                <div>
-                  <img
-                    className="img-fluid rounded-circle"
-                    style={{ width: "50px", height: "50px" }}
-                    src="https://images.unsplash.com/photo-1499887142886-791eca5918cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-                    alt="slkdjfskdfj"
-                  />
-                </div>
-                <div className="ms-1">
-                  <h6>Gal Gadot</h6>
-                  <div>
-                    <small>@galGadot</small>
-                  </div>
-                </div>
-              </div>
-              <div className="d-flex align-items-start">
-                <button className="rounded-pill px-3 py-1 follow-btn fw-bold">
-                  Seguir
-                </button>
-              </div>
-            </button>
+                );
+              })}
           </div>
 
           <div className="text-secondary">

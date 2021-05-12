@@ -1,10 +1,36 @@
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 function TweetCreator() {
+  const [loggedInUser, setLoggedInUser] = useState({});
+  const user = useSelector((state) => state.userReducer);
+
+  useEffect(() => {
+    const getLoggedInUserData = async () => {
+      const response = await axios.get("http://localhost:8080/api/index-user", {
+        params: {
+          username: user.userName,
+        },
+        headers: {
+          Authorization: `token ${user.token}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response);
+      setLoggedInUser(response.data.user);
+    };
+    getLoggedInUserData();
+  }, []);
+
   return (
     <div className="row py-4">
       <div className="col-2">
         <img
-          src="https://thumbs.dreamstime.com/z/galletas-cuadradas-una-con-la-sal-65466156.jpg"
-          alt="user-pic"
+          src={loggedInUser && loggedInUser.profilePicture}
+          alt={user.userName}
           className="img-fluid rounded-circle"
           style={{ width: "60px", height: "60px", margin: "0 auto" }}
         />

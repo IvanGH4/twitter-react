@@ -1,5 +1,5 @@
 import produce from "immer";
-const INITIAL_STATE = {};
+const INITIAL_STATE = [];
 
 const userReducer = produce((state, action) => {
   switch (action.type) {

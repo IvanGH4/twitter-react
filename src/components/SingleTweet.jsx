@@ -1,26 +1,26 @@
 import { Link } from "react-router-dom";
+import logo from "../logo.svg";
 
-function SingleTweet() {
+function SingleTweet({ tweet }) {
   return (
-    <div className="row g-0 text-light">
+    <div className="row g-0 text-light my-5">
       <div className="col-2">
         <img
-          src="https://thumbs.dreamstime.com/z/galletas-cuadradas-una-con-la-sal-65466156.jpg"
-          alt=""
+          src={tweet.user.profilePicture ? tweet.user.profilePicture : logo}
+          alt={tweet.user.userName}
           className="img-fluid rounded-circle"
           style={{ width: "60px", height: "60px", margin: "0 auto" }}
         />
       </div>
       <div className="col-10">
         <div className="header d-flex align-items-center">
-          <h4 className="name">nombre</h4>
-          <small className="nikname ms-2">@nikname</small>
-          <small className="date ms-2">date</small>
+          <h4 className="name">
+            {tweet.user.firstName + " " + tweet.user.lastName}
+          </h4>
+          <small className="nikname ms-2">@{tweet.user.userName}</small>
+          <small className="date ms-2">{tweet.createdAt}</small>
         </div>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur,
-          amet?
-        </p>
+        <p>{tweet.text}</p>
         <div className="row">
           <div className="col-12">
             <ul className="centro__ul d-flex align-items-center justify-content-between p-0">
@@ -56,7 +56,7 @@ function SingleTweet() {
                   </svg>
                 </Link>
 
-                <span className="centro__numero"> 45 </span>
+                <span className="centro__numero">{tweet.likes.length}</span>
               </li>
               <li className="centro__li d-flex pe-5">
                 <svg className="centro__svg" viewBox="0 0 24 24">

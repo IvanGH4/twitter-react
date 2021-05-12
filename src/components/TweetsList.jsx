@@ -7,6 +7,8 @@ import SingleTweet from "./SingleTweet";
 function TweetsList() {
   const user = useSelector((state) => state.userReducer);
 
+  const tweets = useSelector((state) => state.tweetReducer);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,9 +32,12 @@ function TweetsList() {
   }, []);
 
   return (
-    <div>
-      <SingleTweet />
-    </div>
+    <>
+      {tweets &&
+        tweets.map((tweet) => {
+          return <SingleTweet key={tweet.id} tweet={tweet} />;
+        })}
+    </>
   );
 }
 
