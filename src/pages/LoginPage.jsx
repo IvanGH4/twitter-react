@@ -1,4 +1,40 @@
+import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import actions from "../redux/actions/userActions";
+
 function LoginPage() {
+  const [userInput, setUserInput] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await axios.post(
+      "http://localhost:8080/api/login",
+      {
+        user: userInput,
+        password: password,
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.data) {
+      dispatch(actions.setUser(response.data));
+      history.push("/home");
+    } else {
+      console.log("Imbecil");
+    }
+  };
+
   return (
     <div className="index">
       <div className="der">
@@ -35,24 +71,37 @@ function LoginPage() {
         </ul>
       </div>
       <div className="izq">
-        <form action="/login" method="POST" className="izq__form">
+        <form onSubmit={handleSubmit} className="izq__form">
           <div className="form__input">
-            <input type="text" id="nombre" name="username" required />
-            <label for="nombre">Teléfono, correo o usuar..</label>
+            <input
+              value={userInput}
+              type="text"
+              id="nombre"
+              name="username"
+              required
+              onChange={(e) => setUserInput(e.target.value)}
+            />
+            <label htmlFor="nombre">Teléfono, correo o usuar..</label>
           </div>
           <div className="form__input">
-            <a href="#" title="¿Olvidaste tu contraseña?">
+            <Link title="¿Olvidaste tu contraseña?">
               ¿Olvidaste tu contraseña?
-            </a>
-            <input type="password" id="pass" name="password" required />
-            <label for="pass">Contraseña</label>
+            </Link>
+            <input
+              value={password}
+              type="password"
+              id="pass"
+              name="password"
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <label htmlFor="pass">Contraseña</label>
           </div>
           <input
             className="form__submit"
             type="submit"
             value="Iniciar sesión"
           />
-          <div></div>
         </form>
 
         <div className="izq__centrado">
@@ -66,114 +115,76 @@ function LoginPage() {
           </h2>
 
           <h3 className="izq__h3">Únete a Twitter hoy mismo.</h3>
-          <a className="izq__button boton-registrate" href="/registro">
-            Regístrate
-          </a>
-          <a
+          <Link className="izq__button boton-registrate">Regístrate</Link>
+          <Link
             className="izq__button boton-iniciar"
-            href=""
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
             Iniciar sesión
-          </a>
+          </Link>
         </div>
       </div>
       <footer className="footer">
         <div className="footer__buttons">
-          <a className="footer__button boton-registrate" href="/registro">
-            Regístrate
-          </a>
-          <a
+          <Link className="footer__button boton-registrate">Regístrate</Link>
+          <Link
             className="footer__button boton-iniciar"
-            href=""
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
             Iniciar sesión
-          </a>
+          </Link>
         </div>
 
         <ul className="footer__ul">
           <li className="footer__li">
-            <a href="#" title="Acerca de">
-              Acerca de
-            </a>
+            <Link title="Acerca de">Acerca de</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Centro de ayuda">
-              Centro de ayuda
-            </a>
+            <Link title="Centro de ayuda">Centro de ayuda</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Condiciones de Servicio">
-              Condiciones de Servicio
-            </a>
+            <Link title="Condiciones de Servicio">Condiciones de Servicio</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Política de Privacidad">
-              Política de Privacidad
-            </a>
+            <Link title="Política de Privacidad">Política de Privacidad</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Política de cookies">
-              Política de cookies
-            </a>
+            <Link title="Política de cookies">Política de cookies</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Información de anuncios">
-              Información de anuncios
-            </a>
+            <Link title="Información de anuncios">Información de anuncios</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Blog">
-              Blog
-            </a>
+            <Link title="Blog">Blog</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Estado">
-              Estado
-            </a>
+            <Link title="Estado">Estado</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Empleos">
-              Empleos
-            </a>
+            <Link title="Empleos">Empleos</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Recursos para marcas">
-              Recursos para marcas
-            </a>
+            <Link title="Recursos para marcas">Recursos para marcas</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Publicidad">
-              Publicidad
-            </a>
+            <Link title="Publicidad">Publicidad</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Marketing">
-              Marketing
-            </a>
+            <Link title="Marketing">Marketing</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Twitter para empresas">
-              Twitter para empresas
-            </a>
+            <Link title="Twitter para empresas">Twitter para empresas</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Desarrolladores">
-              Desarrolladores
-            </a>
+            <Link title="Desarrolladores">Desarrolladores</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Guía">
-              Guía
-            </a>
+            <Link title="Guía">Guía</Link>
           </li>
           <li className="footer__li">
-            <a href="#" title="Configuración">
-              Configuración
-            </a>
+            <Link title="Configuración">Configuración</Link>
           </li>
           <li className="footer__li">© 2020 Twitter, Inc.</li>
         </ul>
@@ -199,7 +210,7 @@ function LoginPage() {
             </div>
             <div className="modal-body">
               <form action="/login" method="POST">
-                <label className="form-label" for="user">
+                <label className="form-label" htmlFor="user">
                   Nombre de usuario o email
                 </label>
                 <input
@@ -208,7 +219,7 @@ function LoginPage() {
                   id="user"
                   name="username"
                 />
-                <label className="form-label" for="pass">
+                <label className="form-label" htmlFor="pass">
                   Contraseña
                 </label>
                 <input

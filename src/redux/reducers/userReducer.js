@@ -1,14 +1,13 @@
-// import produce from "immer"
+import produce from "immer";
+const INITIAL_STATE = {};
 
-// // Reducer with initial state
-// const INITIAL_STATE = {}
+const userReducer = produce((state, action) => {
+  switch (action.type) {
+    case "SET_USER":
+      return (state = action.payload);
+    default:
+      return state;
+  }
+}, INITIAL_STATE);
 
-// const byId = produce((draft, action) => {
-//     switch (action.type) {
-//         case RECEIVE_PRODUCTS:
-//             action.products.forEach(product => {
-//                 draft[product.id] = product
-//             })
-//             break
-//     }
-// }, INITIAL_STATE)
+export default userReducer;

@@ -1,7 +1,8 @@
 import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import PublicRoute from "./components/PublicRoute";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 
@@ -10,9 +11,9 @@ function App() {
     <Router>
       <PublicRoute restricted={false} component={LoginPage} exact path="/" />
       <Switch>
-        <Route path="/home" component={HomePage} />
+        <PrivateRoute path="/home" component={HomePage} />
         <PublicRoute
-          restricted={false}
+          restricted={true}
           path="/registro"
           component={RegisterPage}
         />

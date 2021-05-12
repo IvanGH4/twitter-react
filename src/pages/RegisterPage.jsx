@@ -1,6 +1,45 @@
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import actions from "../redux/actions/userActions";
 import "./RegisterPage.css";
 
 function RegisterPage() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await axios.post(
+      "http://localhost:8080/api/register",
+      {
+        firstName,
+        lastName,
+        userName,
+        email,
+        password,
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.data) {
+      dispatch(actions.setUser(response.data));
+      history.push("/home");
+    }
+  };
+
   return (
     <div className="login-wrapper">
       <div className="content">
@@ -17,7 +56,7 @@ function RegisterPage() {
         <div className="title">
           <h2>Iniciar sesion en Twitter</h2>
         </div>
-        <form className="register_form" action="/registro" method="POST">
+        <form className="register_form" onSubmit={handleSubmit}>
           <div className="form">
             <input
               type="text"
@@ -25,6 +64,10 @@ function RegisterPage() {
               id="firstName"
               required
               autocomplete="off"
+              value={firstName}
+              onChange={(e) => {
+                setFirstName(e.target.value);
+              }}
             />
             <label htmlFor="firstName" className="label-name">
               <span className="content-name">Nombre</span>
@@ -37,6 +80,10 @@ function RegisterPage() {
               name="lastName"
               required
               autocomplete="off"
+              value={lastName}
+              onChange={(e) => {
+                setLastName(e.target.value);
+              }}
             />
             <label htmlFor="lastName" className="label-name">
               <span className="content-name">Apellido</span>
@@ -49,6 +96,10 @@ function RegisterPage() {
               name="userName"
               required
               autocomplete="off"
+              value={userName}
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
             />
             <label htmlFor="userName" className="label-name">
               <span className="content-name">Nombre de usuario</span>
@@ -61,6 +112,10 @@ function RegisterPage() {
               name="email"
               required
               autocomplete="off"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
             />
             <label htmlFor="email" className="label-name">
               <span className="content-name">Email</span>
@@ -73,6 +128,10 @@ function RegisterPage() {
               name="password"
               required
               autocomplete="off"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
             <label htmlFor="password" className="label-name">
               <span className="content-name">Contraseña</span>
