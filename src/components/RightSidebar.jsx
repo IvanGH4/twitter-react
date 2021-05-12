@@ -26,7 +26,7 @@ function RightSidebar() {
                 </div>
               </div>
               <div className="d-flex align-items-start">
-                <i class="fas fa-ellipsis-h"></i>
+                <i className="fas fa-ellipsis-h"></i>
               </div>
             </button>
             <button className="list-group-item list-group-item-action d-flex justify-content-between trending">
@@ -40,7 +40,7 @@ function RightSidebar() {
                 </div>
               </div>
               <div className="d-flex align-items-start">
-                <i class="fas fa-ellipsis-h"></i>
+                <i className="fas fa-ellipsis-h"></i>
               </div>
             </button>
             <button className="list-group-item list-group-item-action d-flex justify-content-between trending">
@@ -54,7 +54,7 @@ function RightSidebar() {
                 </div>
               </div>
               <div className="d-flex align-items-start">
-                <i class="fas fa-ellipsis-h"></i>
+                <i className="fas fa-ellipsis-h"></i>
               </div>
             </button>
           </div>
@@ -81,7 +81,7 @@ function RightSidebar() {
                 </div>
               </div>
               <div className="d-flex align-items-start">
-                <button class="rounded-pill px-3 py-1 follow-btn fw-bold">
+                <button className="rounded-pill px-3 py-1 follow-btn fw-bold">
                   Seguir
                 </button>
               </div>
@@ -104,7 +104,7 @@ function RightSidebar() {
                 </div>
               </div>
               <div className="d-flex align-items-start">
-                <button class="rounded-pill px-3 py-1 follow-btn fw-bold">
+                <button className="rounded-pill px-3 py-1 follow-btn fw-bold">
                   Seguir
                 </button>
               </div>

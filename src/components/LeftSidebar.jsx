@@ -4,7 +4,7 @@ import "./LeftSidebar.css";
 function LeftSidebar() {
   return (
     <aside className="col-md-3 izq">
-      <ul classNameName="izq__ul d-flex flex-column justify-content-start align-items-start p-0 m-0">
+      <ul className="izq__ul d-flex flex-column justify-content-start align-items-start p-0 m-0">
         <li className="izq__li">
           <Link className="izq__a">
             <svg className="izq__svg" viewBox="0 0 24 24">
