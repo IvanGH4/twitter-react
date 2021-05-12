@@ -3,9 +3,9 @@ import "./LeftSidebar.css";
 
 function LeftSidebar() {
   return (
-    <aside className="col-md-2 izq">
+    <aside className="col-md-3 izq">
       <ul classNameName="izq__ul d-flex flex-column justify-content-start align-items-start p-0 m-0">
-        <li className="izq__li d-inline-flex">
+        <li className="izq__li">
           <Link className="izq__a">
             <svg className="izq__svg" viewBox="0 0 24 24">
               <g>
@@ -14,7 +14,7 @@ function LeftSidebar() {
             </svg>
           </Link>
         </li>
-        <li className="izq__li d-inline-flex">
+        <li className="izq__li">
           <Link>
             <svg viewBox="0 0 24 24">
               <g>
@@ -24,7 +24,7 @@ function LeftSidebar() {
             <span>Inicio</span>
           </Link>
         </li>
-        <li className="izq__li d-inline-flex">
+        <li className="izq__li">
           <Link>
             <svg viewBox="0 0 24 24">
               <g>
@@ -34,7 +34,7 @@ function LeftSidebar() {
             <span>Explorar</span>
           </Link>
         </li>
-        <li className="izq__li d-inline-flex">
+        <li className="izq__li">
           <Link>
             <svg viewBox="0 0 24 24">
               <g>
@@ -44,7 +44,7 @@ function LeftSidebar() {
             <span>Notificaciones</span>
           </Link>
         </li>
-        <li className="izq__li d-inline-flex">
+        <li className="izq__li">
           <Link>
             <svg viewBox="0 0 24 24">
               <g>
@@ -54,7 +54,7 @@ function LeftSidebar() {
             <span>Mensajes</span>
           </Link>
         </li>
-        <li className="izq__li d-inline-flex">
+        <li className="izq__li">
           <Link>
             <svg viewBox="0 0 24 24">
               <g>
@@ -64,7 +64,7 @@ function LeftSidebar() {
             <span>Guardados</span>
           </Link>
         </li>
-        <li className="izq__li d-inline-flex">
+        <li className="izq__li">
           <Link>
             <svg viewBox="0 0 24 24">
               <g>
@@ -75,7 +75,7 @@ function LeftSidebar() {
             <span>Listas</span>
           </Link>
         </li>
-        <li className="izq__li d-inline-flex">
+        <li className="izq__li">
           <Link>
             <svg viewBox="0 0 24 24">
               <g>

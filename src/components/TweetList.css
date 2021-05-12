@@ -16,3 +16,14 @@ li a i {
 textarea {
   background-color: transparent;
 }
+
+.tweet-btn {
+  background-color: #1da1f2;
+  transition: all 0.3s ease-in-out;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.tweet-btn:hover {
+  opacity: 0.9;
+}
