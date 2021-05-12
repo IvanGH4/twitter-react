@@ -17,9 +17,7 @@ function TweetsList() {
         "http://localhost:8080/api/index-tweets",
         {
           headers: {
-            Authorization: `token ${user.token}`,
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+            Authorization: `Bearer ${user.token}`,
             "Content-Type": "application/json",
           },
         }

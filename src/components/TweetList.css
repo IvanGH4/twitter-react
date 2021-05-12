@@ -27,3 +27,7 @@ textarea {
 .tweet-btn:hover {
   opacity: 0.9;
 }
+
+.liked {
+  fill: red;
+}

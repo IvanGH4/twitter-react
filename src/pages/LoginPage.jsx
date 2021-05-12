@@ -20,8 +20,6 @@ function LoginPage() {
       },
       {
         headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
           "Content-Type": "application/json",
         },
       }
@@ -30,8 +28,6 @@ function LoginPage() {
     if (response.data) {
       dispatch(actions.setUser(response.data));
       history.push("/home");
-    } else {
-      console.log("Imbecil");
     }
   };
 
