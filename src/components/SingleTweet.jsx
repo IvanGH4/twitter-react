@@ -27,9 +27,9 @@ function SingleTweet({ tweet }) {
             <ul className="centro__ul d-flex align-items-center justify-content-between p-0">
               <li className="centro__li d-flex">
                 <span className="centro__numero">
-                  <Link>
+                  <button>
                     <i className="fas fa-trash"></i>
-                  </Link>
+                  </button>
                 </span>
               </li>
               <li className="centro__li d-flex">
@@ -48,8 +48,8 @@ function SingleTweet({ tweet }) {
                 </svg>
                 <span className="centro__numero">1</span>
               </li>
-              <li className="centro__li d-flex">
-                <LikeBtn tweetId={tweet._id} />
+              <li className="centro__li d-flex align-items-center">
+                <LikeBtn tweet={tweet} />
                 <span className="centro__numero">{tweet.likes.length}</span>
               </li>
               <li className="centro__li d-flex pe-5">

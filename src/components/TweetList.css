@@ -28,6 +28,22 @@ textarea {
   opacity: 0.9;
 }
 
-.liked {
-  fill: red;
+.like-animation {
+  animation: heart 300ms linear forwards;
+}
+
+@keyframes heart {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.no-focus:focus {
+  outline: none !important;
 }

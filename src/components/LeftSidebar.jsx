@@ -99,6 +99,17 @@ function LeftSidebar() {
             <span>Más opciones</span>
           </Link>
         </li>
+        <li className="izq__li">
+          <button
+            className="btn"
+            onClick={() => {
+              localStorage.clear();
+              window.location.reload();
+            }}
+          >
+            <span className="text-white">Salir</span>
+          </button>
+        </li>
       </ul>
     </aside>
   );

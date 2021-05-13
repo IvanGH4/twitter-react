@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import logo from "../logo.svg";
+import FollowBtn from "./FollowBtn";
 
 function RightSidebar() {
   const [users, setUsers] = useState([]);
@@ -110,9 +111,7 @@ function RightSidebar() {
                       </div>
                     </div>
                     <div className="d-flex align-items-start">
-                      <button className="rounded-pill px-3 py-1 follow-btn fw-bold">
-                        Seguir
-                      </button>
+                      <FollowBtn user={user} />
                     </div>
                   </div>
                 );
