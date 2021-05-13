@@ -11,16 +11,21 @@ function DeleteBtn({ tweet }) {
   const dispatch = useDispatch();
 
   const handleClick = async () => {
-    // dispatch(actions.deleteTweet(tweet._id));
-    await axios.delete("http://localhost:8080/api/tweets", {
-      data: {
-        id: tweet._id,
-      },
-      headers: {
-        Authorization: `Bearer ${loggedUser.token}`,
-        "Content-Type": "application/json",
-      },
-    });
+    if (loggedUser.userId !== tweet.user._id) {
+      console.log("NO!!!");
+      return;
+    } else {
+      dispatch(actions.deleteTweet(tweet._id));
+      await axios.delete("http://localhost:8080/api/tweets", {
+        data: {
+          id: tweet._id,
+        },
+        headers: {
+          Authorization: `Bearer ${loggedUser.token}`,
+          "Content-Type": "application/json",
+        },
+      });
+    }
   };
   return (
     <button className="btn" onClick={handleClick}>
