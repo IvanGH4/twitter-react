@@ -17,11 +17,15 @@ const tweetReducer = (state = INITIAL_STATE, action) => {
           let idxOfUserId = tweetBeingLiked.likes.indexOf(
             action.payload.userId
           );
-          console.log(idxOfUserId);
+          // console.log(idxOfUserId);
           tweetBeingLiked.likes.splice(idxOfUserId, 1);
         } else {
           tweetBeingLiked.likes.push(action.payload.userId);
         }
+      });
+    case "DELETE_TWEET":
+      return produce(state, (draft) => {
+        draft.filter((tweet) => tweet._id.toString() !== action.payload);
       });
     default:
       return state;

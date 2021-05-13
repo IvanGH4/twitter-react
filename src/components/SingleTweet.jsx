@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../logo.svg";
+import DeleteBtn from "./DeleteBtn";
 import LikeBtn from "./LikeBtn";
 
 function SingleTweet({ tweet }) {
@@ -27,9 +28,7 @@ function SingleTweet({ tweet }) {
             <ul className="centro__ul d-flex align-items-center justify-content-between p-0">
               <li className="centro__li d-flex">
                 <span className="centro__numero">
-                  <button>
-                    <i className="fas fa-trash"></i>
-                  </button>
+                  <DeleteBtn tweet={tweet} />
                 </span>
               </li>
               <li className="centro__li d-flex">

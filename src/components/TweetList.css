@@ -47,3 +47,9 @@ textarea {
 .no-focus:focus {
   outline: none !important;
 }
+
+.btn.focus,
+.btn:focus {
+  outline: 0;
+  box-shadow: none !important;
+}

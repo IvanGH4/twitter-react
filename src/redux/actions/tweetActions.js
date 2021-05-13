@@ -6,6 +6,13 @@ const actions = {
     };
   },
 
+  deleteTweet: (tweetId) => {
+    return {
+      type: "DELETE_TWEET",
+      payload: tweetId,
+    };
+  },
+
   updateLike: (tweetId, userId) => {
     return {
       type: "UPDATE_LIKE",
