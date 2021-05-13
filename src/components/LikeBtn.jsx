@@ -31,9 +31,12 @@ function LikeBtn({ tweet }) {
   return (
     <button onClick={handleClick} className="btn p-0 no-focus">
       {isLiked ? (
-        <i class="fas fa-heart text-danger centro__svg like-animation"></i>
+        <i className="fas fa-heart text-danger centro__svg like-animation"></i>
       ) : (
-        <i class="far fa-heart centro__svg " style={{ color: "#8899a6" }}></i>
+        <i
+          className="far fa-heart centro__svg "
+          style={{ color: "#8899a6" }}
+        ></i>
       )}
     </button>
   );

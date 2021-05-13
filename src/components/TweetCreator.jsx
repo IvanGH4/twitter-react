@@ -1,10 +1,32 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import actions from "../redux/actions/tweetActions";
 
 function TweetCreator() {
   const [loggedInUser, setLoggedInUser] = useState({});
+  const [tweetText, setTweetText] = useState("");
   const user = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const response = await axios.post(
+      "http://localhost:8080/api/tweets",
+      {
+        text: tweetText,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    dispatch(actions.addTweet(response.data.tweet));
+    setTweetText("");
+  }
 
   useEffect(() => {
     const getLoggedInUserData = async () => {
@@ -38,13 +60,15 @@ function TweetCreator() {
       <div className="col-10">
         <div className="row">
           <div className="col">
-            <form action="#" id="submit-tweet">
+            <form id="submit-tweet" onSubmit={handleSubmit}>
               <textarea
                 className="text-light"
                 name=""
                 id="tweet"
                 cols="50"
                 rows="1"
+                value={tweetText}
+                onChange={(e) => setTweetText(e.target.value)}
                 placeholder="Qué está pasando..."
               ></textarea>
             </form>

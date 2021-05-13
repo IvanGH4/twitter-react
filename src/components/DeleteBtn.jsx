@@ -5,8 +5,6 @@ import React, { useState } from "react";
 
 function DeleteBtn({ tweet }) {
   const loggedUser = useSelector((state) => state.user);
-  console.log(loggedUser);
-  console.log(tweet);
 
   const dispatch = useDispatch();
 

@@ -5,6 +5,11 @@ const tweetReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case "SET_TWEETS":
       return action.payload;
+    case "ADD_TWEET":
+      return produce(state, (draft) => {
+        draft.push(action.payload);
+      });
+    // return [...state, action.payload];
     case "UPDATE_LIKE":
       return produce(state, (draft) => {
         let tweetBeingLiked = draft.find(

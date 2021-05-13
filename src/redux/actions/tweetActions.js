@@ -6,6 +6,13 @@ const actions = {
     };
   },
 
+  addTweet: (tweet) => {
+    return {
+      type: "ADD_TWEET",
+      payload: tweet,
+    };
+  },
+
   deleteTweet: (tweetId) => {
     return {
       type: "DELETE_TWEET",
