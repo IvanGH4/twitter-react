@@ -7,7 +7,7 @@ const tweetReducer = (state = INITIAL_STATE, action) => {
       return action.payload;
     case "ADD_TWEET":
       return produce(state, (draft) => {
-        draft.push(action.payload);
+        draft.unshift(action.payload);
       });
     // return [...state, action.payload];
     case "UPDATE_LIKE":
@@ -29,9 +29,10 @@ const tweetReducer = (state = INITIAL_STATE, action) => {
         }
       });
     case "DELETE_TWEET":
-      return produce(state, (draft) => {
-        draft.filter((tweet) => tweet._id !== action.payload);
-      });
+      // return produce(state, (draft) => {
+      //   draft.filter((tweet) => tweet._id !== action.payload);
+      // });
+      return state.filter((tweet) => tweet._id !== action.payload);
     default:
       return state;
   }
