@@ -8,21 +8,16 @@ import logo from "../logo.svg";
 function RightSidebar() {
   const [users, setUsers] = useState([]);
 
-  const user = useSelector((state) => state.userReducer);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     const getUsers = async () => {
-      const response = await axios.get(
-        "http://localhost:8080/api/index-users",
-        {
-          headers: {
-            Authorization: `token ${user.token}`,
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.get("http://localhost:8080/api/users", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+          "Content-Type": "application/json",
+        },
+      });
       setUsers(response.data.users);
     };
     getUsers();
@@ -95,7 +90,7 @@ function RightSidebar() {
               users.map((user) => {
                 return (
                   <div
-                    key={user.id}
+                    key={user._id}
                     className="list-group-item list-group-item d-flex justify-content-between align-items-center trending py-2"
                   >
                     <div className="d-flex">

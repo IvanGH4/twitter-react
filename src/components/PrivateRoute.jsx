@@ -3,7 +3,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const isLoggedIn = useSelector((state) => state.userReducer);
+  const isLoggedIn = useSelector((state) => state.user);
   return (
     <Route
       {...rest}

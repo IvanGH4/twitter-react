@@ -4,22 +4,22 @@ import axios from "axios";
 
 function TweetCreator() {
   const [loggedInUser, setLoggedInUser] = useState({});
-  const user = useSelector((state) => state.userReducer);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     const getLoggedInUserData = async () => {
-      const response = await axios.get("http://localhost:8080/api/index-user", {
-        params: {
-          username: user.userName,
-        },
-        headers: {
-          Authorization: `token ${user.token}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(response);
+      const response = await axios.get(
+        "http://localhost:8080/api/users/profile",
+        {
+          params: {
+            username: user.userName,
+          },
+          headers: {
+            Authorization: `Bearer ${user.token}`, // esto lo agarra express-jwt.
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setLoggedInUser(response.data.user);
     };
     getLoggedInUserData();

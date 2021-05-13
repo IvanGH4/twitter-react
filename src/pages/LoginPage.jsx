@@ -13,7 +13,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post(
-      "http://localhost:8080/api/login",
+      "http://localhost:8080/api/tokens",
       {
         user: userInput,
         password: password,

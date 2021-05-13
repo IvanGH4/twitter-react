@@ -5,23 +5,20 @@ import axios from "axios";
 import SingleTweet from "./SingleTweet";
 
 function TweetsList() {
-  const user = useSelector((state) => state.userReducer);
+  const user = useSelector((state) => state.user);
 
-  const tweets = useSelector((state) => state.tweetReducer);
+  const tweets = useSelector((state) => state.tweets);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getTweets = async () => {
-      const response = await axios.get(
-        "http://localhost:8080/api/index-tweets",
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.get("http://localhost:8080/api/tweets", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+          "Content-Type": "application/json",
+        },
+      });
       if (response.data.tweets) {
         dispatch(actions.setTweets(response.data.tweets));
       }
@@ -31,9 +28,9 @@ function TweetsList() {
 
   return (
     <>
-      {tweets &&
+      {tweets.length > 0 &&
         tweets.map((tweet) => {
-          return <SingleTweet key={tweet.id} tweet={tweet} />;
+          return <SingleTweet key={tweet._id} tweet={tweet} />;
         })}
     </>
   );
