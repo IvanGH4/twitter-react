@@ -111,7 +111,9 @@ function LoginPage() {
           </h2>
 
           <h3 className="izq__h3">Únete a Twitter hoy mismo.</h3>
-          <Link className="izq__button boton-registrate">Regístrate</Link>
+          <Link className="izq__button boton-registrate" to="/registro">
+            Regístrate
+          </Link>
           <Link
             className="izq__button boton-iniciar"
             data-bs-toggle="modal"
