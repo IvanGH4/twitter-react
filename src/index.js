@@ -6,12 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store/store";
 import { PersistGate } from "redux-persist/integration/react";
+import { ToastProvider, useToasts } from "react-toast-notifications";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <ToastProvider>
+          <App />
+        </ToastProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>,
