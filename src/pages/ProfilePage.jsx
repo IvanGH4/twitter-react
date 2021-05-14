@@ -4,7 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
 import axios from "axios";
-import FollowBtn from "../components/FollowBtn";
+// import FollowBtn from "../components/FollowBtn";
+import logo from "../logo.svg";
 
 function ProfilePage() {
   const [singleUser, setSingleUser] = useState({});
@@ -24,10 +25,11 @@ function ProfilePage() {
           },
         }
       );
+      console.log("esta es la response : ", typeof response.data.user);
       setSingleUser(response.data.user);
     };
     getUser();
-  }, []);
+  }, [username]);
 
   return (
     <div class="container">
@@ -42,13 +44,13 @@ function ProfilePage() {
         >
           <div className="text-white">
             <div class="d-flex align-items-center px-4 py-4">
-              <a
-                href="/"
+              <Link
+                to="/home"
                 class="me-3 fs-4 text-decoration-none"
                 style={{ color: "rgb(29, 161, 242)" }}
               >
                 <i class="fas fa-arrow-left"></i>
-              </a>
+              </Link>
               <div>
                 <h3 class="fs-5 m-0">
                   {singleUser.firstName + " " + singleUser.lastName}
@@ -63,19 +65,22 @@ function ProfilePage() {
                 style={{ maxHeight: "300px", width: "100%" }}
               />
             </div>
-            <div class="d-flex justify-content-between align-items-center px-4">
+            <div class="d-flex justify-content-between align-items-center  px-4">
               <img
                 style={{
                   marginTop: "-80px",
-                  width: "150px !important",
-                  height: "150px !important",
-                  borderTadius: "50%",
+                  width: "150px",
+                  height: "150px",
+                  borderRadius: "50%",
                 }}
-                src={singleUser.profilePicture}
+                src={
+                  singleUser.profilePicture ? singleUser.profilePicture : logo
+                }
                 alt={singleUser.userName}
               />
 
-              {singleUser.userName === user.userName ? (
+              {/* {Object.entries(singleUser).length > 0 &&
+              singleUser.userName === user.userName ? (
                 <button
                   data-bs-toggle="modal"
                   data-bs-target="#editProfileModal"
@@ -90,7 +95,7 @@ function ProfilePage() {
                 </button>
               ) : (
                 <FollowBtn user={singleUser} />
-              )}
+              )} */}
             </div>
             <div class="px-4 mt-4">
               <h4>{singleUser.firstName + " " + singleUser.lastName}</h4>
@@ -105,23 +110,23 @@ function ProfilePage() {
               <span class="fw-bold text-light me-2"></span>
               <button
                 type="button"
-                class="btn"
+                class="btn p-0"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 style={{ color: "rgb(107, 125, 140)" }}
               >
-                siguiendo
+                {singleUser.following.length} siguiendo
               </button>
 
               <span class="fw-bold text-light me-2"></span>
               <button
                 type="button"
-                class="btn"
+                class="btn p-0"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 style={{ color: "rgb(107, 125, 140)" }}
               >
-                seguidores
+                {singleUser.followers.length} seguidores
               </button>
             </div>
             <div
@@ -143,7 +148,7 @@ function ProfilePage() {
         <RightSidebar />
       </div>
       <div
-        class="modal fade"
+        class="modal fade text-white"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
@@ -176,7 +181,13 @@ function ProfilePage() {
                       Seguidores
                     </h4>
 
-                    <Link class="my-2"></Link>
+                    {singleUser.followers.map((follower) => {
+                      return (
+                        <Link to={`/perfil/${follower.userName}`} class="my-2">
+                          @{follower.userName}
+                        </Link>
+                      );
+                    })}
                   </div>
                   <div class="col-md-6">
                     <h4
@@ -186,7 +197,13 @@ function ProfilePage() {
                       Seguidos
                     </h4>
 
-                    <Link class="my-2"></Link>
+                    {singleUser.following.map((followed) => {
+                      return (
+                        <Link to={`/perfil/${followed.userName}`} class="my-2">
+                          @{followed.userName}
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -225,11 +242,7 @@ function ProfilePage() {
               ></button>
             </div>
             <div class="modal-body bg-dark">
-              <form
-                action="/usuario/editar"
-                method="POST"
-                enctype="multipart/form-data"
-              >
+              <form>
                 <div class="mb-3">
                   <label for="image" class="form-label">
                     Suba su imágen de perfil
