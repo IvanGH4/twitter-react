@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import actions from "../redux/actions/tweetActions";
+import logo from "../logo.svg";
 
 function TweetCreator() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -51,7 +52,7 @@ function TweetCreator() {
     <div className="row py-4">
       <div className="col-2">
         <img
-          src={loggedInUser && loggedInUser.profilePicture}
+          src={loggedInUser.profilePicture ? loggedInUser.profilePicture : logo}
           alt={user.userName}
           className="img-fluid rounded-circle"
           style={{ width: "60px", height: "60px", margin: "0 auto" }}
@@ -61,16 +62,18 @@ function TweetCreator() {
         <div className="row">
           <div className="col">
             <form id="submit-tweet" onSubmit={handleSubmit}>
-              <textarea
-                className="text-light"
-                name=""
-                id="tweet"
-                cols="50"
-                rows="1"
-                value={tweetText}
-                onChange={(e) => setTweetText(e.target.value)}
-                placeholder="Qué está pasando..."
-              ></textarea>
+              <div className="form-floating">
+                <textarea
+                  className="text-light"
+                  name=""
+                  id="tweet"
+                  cols="50"
+                  rows="2"
+                  value={tweetText}
+                  onChange={(e) => setTweetText(e.target.value)}
+                  placeholder="Qué está pasando..."
+                ></textarea>
+              </div>
             </form>
           </div>
         </div>

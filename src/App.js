@@ -5,6 +5,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <PublicRoute restricted={false} component={LoginPage} exact path="/" />
       <Switch>
         <PrivateRoute path="/home" component={HomePage} />
+        <PrivateRoute path="/perfil/:username" component={ProfilePage} />
         <PublicRoute
           restricted={true}
           path="/registro"

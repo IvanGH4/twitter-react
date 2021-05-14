@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import logo from "../logo.svg";
 import DeleteBtn from "./DeleteBtn";
 import LikeBtn from "./LikeBtn";

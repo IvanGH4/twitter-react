@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import actions from "../redux/actions/tweetActions";
 
 function FollowBtn({ user }) {
+  console.log(user);
   const loggedUser = useSelector((state) => state.user);
   const [isFollowing, setIsFollowing] = useState(
     user.followers.some((follower) => follower === loggedUser.userId)
