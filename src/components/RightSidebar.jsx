@@ -57,7 +57,7 @@ function RightSidebar() {
                 <div>
                   <small>Tendencia en Uruguay</small>
                 </div>
-                <h6>BIOS</h6>
+                <h6>BIOS no puede con HACK</h6>
                 <div>
                   <small>1.72 M tweets</small>
                 </div>

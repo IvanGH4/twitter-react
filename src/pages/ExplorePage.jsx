@@ -25,34 +25,52 @@ function ExplorePage() {
   }, []);
 
   return (
-    <div className="row">
-      <LeftSidebar />
+    <div className="container">
+      <div className="row">
+        <LeftSidebar />
 
-      <div className="col-md-6 my-3">
-        {users.map((user) => {
-          return (
-            <Link className="text-white" to={`/perfil/${user.userName}`}>
-              {" "}
-              <div
-                className="card my-4 bg-dark"
-                style={{ width: "50%", height: "200px", margin: "0 auto" }}
-                key={user._id}
+        <div className="col-md-6 my-3">
+          {users.map((user) => {
+            return (
+              <Link
+                className="text-white d-flex justify-content-center"
+                to={`/perfil/${user.userName}`}
               >
-                <img
-                  src={user.profilePicture ? user.profilePicture : logo}
-                  className="card-img-top"
-                  alt={user.userName}
-                />
-                <div className="card-body">
-                  <h2>{user.userName}</h2>
+                {" "}
+                {/* <div
+                  className="card my-4 p-4 bg-dark"
+                  style={{ width: "50%", height: "200px", margin: "0 auto" }}
+                  key={user._id}
+                >
+                  <img
+                    src={user.profilePicture ? user.profilePicture : logo}
+                    className="card-img-top img-fluid"
+                    alt={user.userName}
+                  />
+                  <div className="card-body">
+                    <h2>{user.userName}</h2>
+                  </div>
+                </div> */}
+                <div
+                  className="card bg-dark my-4"
+                  style={{ width: "20rem", minHeight: "20rem" }}
+                >
+                  <img
+                    src={user.profilePicture ? user.profilePicture : logo}
+                    className="card-img-top"
+                    alt={user.userName}
+                  />
+                  <div className="card-body">
+                    <p className="card-text">{user.userName}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+              </Link>
+            );
+          })}
+        </div>
 
-      <RightSidebar />
+        <RightSidebar />
+      </div>
     </div>
   );
 }
