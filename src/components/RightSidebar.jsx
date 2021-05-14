@@ -104,7 +104,16 @@ function RightSidebar() {
                         />
                       </div>
                       <div className="ms-1">
-                        <h6>{user.firstName + " " + user.lastName}</h6>
+                        <h6
+                          style={{
+                            width: "90px",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {user.firstName + " " + user.lastName}
+                        </h6>
                         <div>
                           <small>@{user.userName}</small>
                         </div>

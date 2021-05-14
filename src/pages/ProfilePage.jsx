@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import LeftSidebar from "../components/LeftSidebar";
@@ -8,6 +8,8 @@ import FollowBtn from "../components/FollowBtn";
 import logo from "../logo.svg";
 import SingleTweet from "../components/SingleTweet";
 import { useToasts } from "react-toast-notifications";
+import "../components/RightSidebar.css";
+import actions from "../redux/actions/tweetActions";
 
 function ProfilePage() {
   const [singleUser, setSingleUser] = useState();
@@ -16,7 +18,10 @@ function ProfilePage() {
   const [bio, setBio] = useState("");
   const [avatar, setAvatar] = useState("");
 
+  const dispatch = useDispatch();
+
   const user = useSelector((state) => state.user);
+  const tweets = useSelector((state) => state.tweets);
 
   let { username } = useParams();
 
@@ -63,6 +68,24 @@ function ProfilePage() {
       setFirstName(singleUser.firstName);
       setLastName(singleUser.lastName);
       setBio(singleUser.description);
+
+      const getUserTweets = async () => {
+        const response = await axios.get(
+          "http://localhost:8080/api/users/profile/tweets",
+          {
+            params: {
+              userId: singleUser._id,
+            },
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(response.data);
+        dispatch(actions.setTweets(response.data.tweets));
+      };
+      getUserTweets();
     }
   }, [singleUser]);
 
@@ -124,12 +147,7 @@ function ProfilePage() {
                   <button
                     data-bs-toggle="modal"
                     data-bs-target="#editProfileModal"
-                    className="rounded-pill px-3 py-2 fw-bold"
-                    style={{
-                      color: "rgb(29, 161, 242)",
-                      backgroundColor: "transparent",
-                      border: "solid 1px rgb(29, 161, 242);",
-                    }}
+                    className="rounded-pill px-3 py-2 follow-btn fw-bold"
                   >
                     Editar perfil
                   </button>
@@ -184,11 +202,11 @@ function ProfilePage() {
                 </p>
               </div>
             </div>
-            {singleUser.tweets.map((tweet) => {
+            {tweets.map((tweet) => {
               return <SingleTweet key={tweet._id} tweet={tweet} />;
             })}
           </div>
-          <RightSidebar />
+          {/* <RightSidebar /> */}
           <div
             className="modal fade text-white"
             id="exampleModal"
