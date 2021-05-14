@@ -28,7 +28,7 @@ function RightSidebar() {
   return (
     <div
       className="col-md-3 right-sidebar py-4"
-      style={{ height: "100vh", overflowY: "auto" }}
+      // style={{ height: "100vh", overflowY: "auto" }}
     >
       <aside>
         <SearchBox />
