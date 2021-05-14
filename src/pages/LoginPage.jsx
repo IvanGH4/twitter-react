@@ -3,12 +3,15 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import actions from "../redux/actions/userActions";
+import { useToasts } from "react-toast-notifications";
 
 function LoginPage() {
   const [userInput, setUserInput] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const { addToast } = useToasts();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,6 +31,7 @@ function LoginPage() {
     if (response.data) {
       dispatch(actions.setUser(response.data));
       history.push("/home");
+      addToast("Bienvenido!", { appearance: "success" });
     }
   };
 
