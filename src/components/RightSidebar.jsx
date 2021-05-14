@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import logo from "../logo.svg";
 import FollowBtn from "./FollowBtn";
+import { Link } from "react-router-dom";
 
 function RightSidebar() {
   const [users, setUsers] = useState([]);
@@ -104,16 +105,20 @@ function RightSidebar() {
                         />
                       </div>
                       <div className="ms-1">
-                        <h6
-                          style={{
-                            width: "90px",
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                          }}
-                        >
-                          {user.firstName + " " + user.lastName}
-                        </h6>
+                        <Link to={`/perfil/${user.userName}`}>
+                          {" "}
+                          <h6
+                            style={{
+                              width: "90px",
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                            }}
+                          >
+                            {user.firstName + " " + user.lastName}
+                          </h6>
+                        </Link>
+
                         <div>
                           <small>@{user.userName}</small>
                         </div>

@@ -206,7 +206,7 @@ function ProfilePage() {
               return <SingleTweet key={tweet._id} tweet={tweet} />;
             })}
           </div>
-          {/* <RightSidebar /> */}
+          <RightSidebar />
           <div
             className="modal fade text-white"
             id="exampleModal"
