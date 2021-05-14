@@ -10,7 +10,7 @@ import ProfilePage from "./pages/ProfilePage";
 function App() {
   return (
     <Router>
-      <PublicRoute restricted={false} component={LoginPage} exact path="/" />
+      <PublicRoute restricted={true} component={LoginPage} exact path="/" />
       <Switch>
         <PrivateRoute path="/home" component={HomePage} />
         <PrivateRoute path="/perfil/:username" component={ProfilePage} />

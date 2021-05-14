@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../logo.svg";
 import DeleteBtn from "./DeleteBtn";
 import LikeBtn from "./LikeBtn";
@@ -16,9 +16,11 @@ function SingleTweet({ tweet }) {
       </div>
       <div className="col-10">
         <div className="header d-flex align-items-center">
-          <h4 className="name">
-            {tweet.user.firstName + " " + tweet.user.lastName}
-          </h4>
+          <Link to={`/perfil/${tweet.user.userName}`}>
+            <h4 className="name">
+              {tweet.user.firstName + " " + tweet.user.lastName}
+            </h4>
+          </Link>
           <small className="nikname ms-2">@{tweet.user.userName}</small>
           <small className="date ms-2">{tweet.createdAt}</small>
         </div>
