@@ -107,7 +107,12 @@ function SingleTweet({ tweet }) {
 
         {tweet.comments &&
           tweet.comments.map((comment) => {
-            return <p key={comment._id}>{comment.text}</p>;
+            return (
+              <div key={comment._id} className="d-flex align-items-center">
+                <span className="text-secondary">{comment.author} : </span>
+                <p className="m-0"> {comment.text}</p>
+              </div>
+            );
           })}
         <div className="row">
           <div className="col-12">
