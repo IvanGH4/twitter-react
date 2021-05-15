@@ -83,7 +83,7 @@ function SingleTweet({ tweet }) {
             </h4>
           </Link>
           <small className="nikname ms-2">@{tweet.user.userName}</small>
-          <small className="date ms-2">{tweet.createdAt}</small>
+          <small className="date ms-2">{tweet.createdAt.slice(0, 10)}</small>
         </div>
         <p>{tweet.text}</p>
         <hr />

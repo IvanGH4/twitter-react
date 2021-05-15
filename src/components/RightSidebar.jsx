@@ -33,7 +33,7 @@ function RightSidebar() {
 
   return (
     <div
-      className="col-md-3 right-sidebar py-4 d-none d-md-block"
+      className="col-md-3 right-sidebar py-4 d-none d-lg-block"
       // style={{ height: "100vh", overflowY: "auto" }}
     >
       <aside className="position-sticky sticky-top">
@@ -101,7 +101,7 @@ function RightSidebar() {
                   return (
                     <div
                       key={user._id}
-                      className="list-group-item list-group-item d-flex justify-content-between align-items-center trending py-2"
+                      className="list-group-item list-group-item d-flex justify-content-between align-items-center flex-wrap trending py-2"
                     >
                       <div className="d-flex">
                         <div>
@@ -141,7 +141,7 @@ function RightSidebar() {
                           </div>
                         </div>
                       </div>
-                      <div className="d-flex align-items-start">
+                      <div className="d-flex align-items-start mt-1">
                         <FollowBtn user={user} />
                       </div>
                     </div>

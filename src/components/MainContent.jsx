@@ -5,7 +5,7 @@ import TweetsList from "./TweetsList";
 
 function MainContent() {
   return (
-    <main className="col-md-6 px-4">
+    <main className="col-lg-6 px-4">
       <TweetCreator />
       <TweetsList />
     </main>

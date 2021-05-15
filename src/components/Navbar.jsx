@@ -3,7 +3,7 @@ import React from "react";
 function Navbar({ setShowMenu, showMenu }) {
   return (
     <div>
-      <nav class="navbar d-md-none navbar-dark bg-dark">
+      <nav class="navbar d-lg-none navbar-dark bg-dark">
         <div class="container-fluid">
           <span class="navbar-brand mb-0 h1">
             <i className="fab fa-twitter"></i>

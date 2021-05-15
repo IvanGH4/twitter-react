@@ -55,7 +55,7 @@ function TweetCreator() {
           src={loggedInUser.profilePicture ? loggedInUser.profilePicture : logo}
           alt={user.userName}
           className="img-fluid rounded-circle"
-          style={{ width: "60px", height: "60px", margin: "0 auto" }}
+          style={{ width: "50px", height: "50px", margin: "0 auto" }}
         />
       </div>
       <div className="col-10">
