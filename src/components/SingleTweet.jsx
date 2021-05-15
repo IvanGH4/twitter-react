@@ -17,16 +17,13 @@ function SingleTweet({ tweet }) {
 
   const userCommentModal = useRef();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // setIsVisible(!isVisible);
-    dispatch(
-      actions.updateComment(tweet._id, {
-        text: comment,
-        author: user.userName,
-        tweetId: tweet._id,
-      })
-    );
+  const handleClick = async (username) => {
+    console.log(username, "click");
+    let comentary = {
+      text: comment,
+      author: user.userName,
+    };
+    dispatch(actions.updateComment(tweet._id, comentary));
     await axios.post(
       "https://twitter-api-pi.vercel.app/api/tweets/comments",
       {
@@ -41,7 +38,32 @@ function SingleTweet({ tweet }) {
         },
       }
     );
+    setComment("");
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   // setIsVisible(!isVisible);
+  //   let comentary = {
+  //     text: comment,
+  //     author: user.userName,
+  //   };
+  //   dispatch(actions.updateComment(tweet._id, comentary));
+  //   // await axios.post(
+  //   //   "https://twitter-api-pi.vercel.app/api/tweets/comments",
+  //   //   {
+  //   //     text: comment,
+  //   //     author: user.userName,
+  //   //     tweetId: tweet._id,
+  //   //   },
+  //   //   {
+  //   //     headers: {
+  //   //       Authorization: `Bearer ${user.token}`,
+  //   //       "Content-Type": "application/json",
+  //   //     },
+  //   //   }
+  //   // );
+  // };
 
   return (
     <div className="row g-0 text-light my-5">
@@ -64,6 +86,29 @@ function SingleTweet({ tweet }) {
           <small className="date ms-2">{tweet.createdAt}</small>
         </div>
         <p>{tweet.text}</p>
+        <hr />
+        <p>Comentarios:</p>
+        <div></div>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            className="form-control bg-dark text-light"
+          />
+          <button
+            className="btn btn-outline-primary"
+            type="button"
+            onClick={() => handleClick(tweet._id)}
+          >
+            Enviar
+          </button>
+        </div>
+
+        {tweet.comments &&
+          tweet.comments.map((comment) => {
+            return <p key={comment._id}>{comment.text}</p>;
+          })}
         <div className="row">
           <div className="col-12">
             <ul className="centro__ul d-flex align-items-center justify-content-between p-0">
@@ -141,7 +186,7 @@ function SingleTweet({ tweet }) {
           </div>
         </div>
       </div>
-      {isVisible && (
+      {/* {isVisible && (
         <div
           ref={userCommentModal}
           class="modal fade text-white"
@@ -209,7 +254,7 @@ function SingleTweet({ tweet }) {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
