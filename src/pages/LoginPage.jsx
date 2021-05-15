@@ -214,7 +214,7 @@ function LoginPage() {
               ></button>
             </div>
             <div className="modal-body">
-              <form action="/login" method="POST">
+              <form onSubmit={handleSubmit}>
                 <label className="form-label" htmlFor="user">
                   Nombre de usuario o email
                 </label>
@@ -223,6 +223,8 @@ function LoginPage() {
                   type="text"
                   id="user"
                   name="username"
+                  value={userInput}
+                  onChange={(e) => setUserInput(e.target.value)}
                 />
                 <label className="form-label" htmlFor="pass">
                   Contraseña
@@ -232,6 +234,8 @@ function LoginPage() {
                   type="password"
                   id="pass"
                   name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
 
                 <input
