@@ -14,7 +14,7 @@ function TweetCreator() {
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await axios.post(
-      "http://localhost:8080/api/tweets",
+      "https://twitter-api-pi.vercel.app/api/tweets",
       {
         text: tweetText,
       },
@@ -32,7 +32,7 @@ function TweetCreator() {
   useEffect(() => {
     const getLoggedInUserData = async () => {
       const response = await axios.get(
-        "http://localhost:8080/api/users/profile",
+        "https://twitter-api-pi.vercel.app/api/users/profile",
         {
           params: {
             username: user.userName,

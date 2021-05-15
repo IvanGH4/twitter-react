@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import userReducer from "../reducers/userReducer";
 import tweetReducer from "../reducers/tweetReducer";
+import currUserReducer from "../reducers/currUserReducer";
 
 const persistConfig = {
   key: "root",
@@ -12,6 +13,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   tweets: tweetReducer,
+  currentUser: currUserReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -10,6 +10,7 @@ import SingleTweet from "../components/SingleTweet";
 import { useToasts } from "react-toast-notifications";
 import "../components/RightSidebar.css";
 import actions from "../redux/actions/tweetActions";
+import currUserActions from "../redux/actions/currUserActions";
 
 function ProfilePage() {
   const [singleUser, setSingleUser] = useState();
@@ -22,6 +23,7 @@ function ProfilePage() {
 
   const user = useSelector((state) => state.user);
   const tweets = useSelector((state) => state.tweets);
+  const currentUser = useSelector((state) => state.currentUser);
 
   let { username } = useParams();
 
@@ -36,7 +38,7 @@ function ProfilePage() {
     formData.append("bio", bio);
     await axios({
       method: "PATCH",
-      url: `http://localhost:8080/api/users/profile`,
+      url: `https://twitter-api-pi.vercel.app/api/users/profile`,
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
@@ -49,7 +51,7 @@ function ProfilePage() {
 
   const getUser = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/users/profile",
+      "https://twitter-api-pi.vercel.app/api/users/profile",
       {
         params: {
           username: username,
@@ -60,6 +62,7 @@ function ProfilePage() {
         },
       }
     );
+    dispatch(currUserActions.setCurrUser(response.data.user));
     setSingleUser(response.data.user);
   };
 
@@ -71,7 +74,7 @@ function ProfilePage() {
 
       const getUserTweets = async () => {
         const response = await axios.get(
-          "http://localhost:8080/api/users/profile/tweets",
+          "https://twitter-api-pi.vercel.app/api/users/profile/tweets",
           {
             params: {
               userId: singleUser._id,
@@ -173,7 +176,7 @@ function ProfilePage() {
                   data-bs-target="#exampleModal"
                   style={{ color: "rgb(107, 125, 140)" }}
                 >
-                  {singleUser.following.length} siguiendo
+                  {currentUser.following.length} siguiendo
                 </button>
 
                 <span className="fw-bold text-light me-2"></span>
@@ -184,7 +187,7 @@ function ProfilePage() {
                   data-bs-target="#exampleModal"
                   style={{ color: "rgb(107, 125, 140)" }}
                 >
-                  {singleUser.followers.length} seguidores
+                  {currentUser.followers.length} seguidores
                 </button>
               </div>
               <div

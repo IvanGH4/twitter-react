@@ -26,5 +26,15 @@ const actions = {
       payload: { tweetId, userId },
     };
   },
+
+  updateComment: (tweetId, comment) => {
+    return {
+      type: "UPDATE_COMMENT",
+      payload: {
+        tweetId,
+        comment,
+      },
+    };
+  },
 };
 export default actions;

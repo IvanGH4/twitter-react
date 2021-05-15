@@ -15,7 +15,7 @@ function LikeBtn({ tweet }) {
     setIsLiked(!isLiked);
     dispatch(actions.updateLike(tweet._id, loggedUser.userId));
     await axios.patch(
-      "http://localhost:8080/api/tweets",
+      "https://twitter-api-pi.vercel.app/api/tweets",
       {
         id: tweet._id,
       },

@@ -14,7 +14,7 @@ function DeleteBtn({ tweet }) {
       return;
     } else {
       dispatch(actions.deleteTweet(tweet._id));
-      await axios.delete("http://localhost:8080/api/tweets", {
+      await axios.delete("https://twitter-api-pi.vercel.app/api/tweets", {
         data: {
           id: tweet._id,
         },
