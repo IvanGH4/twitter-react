@@ -12,7 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ToastProvider>
+        <ToastProvider placement="top-left">
           <App />
         </ToastProvider>
       </PersistGate>

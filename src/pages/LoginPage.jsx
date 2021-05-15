@@ -31,7 +31,10 @@ function LoginPage() {
     if (response.data) {
       dispatch(actions.setUser(response.data));
       history.push("/home");
-      addToast("Bienvenido!", { appearance: "success" });
+      addToast("Bienvenido!", {
+        autoDismiss: true,
+        appearance: "success",
+      });
     }
   };
 
