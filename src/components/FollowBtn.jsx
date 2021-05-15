@@ -41,7 +41,7 @@ function FollowBtn({ user }) {
     setIsFollowing(!isFollowing);
     dispatch(currUserActions.followCurrUser(loggedUser.userId));
     await axios.patch(
-      "http://localhost:8080/api/users",
+      "https://twitter-api-pi.vercel.app/api/users",
       {
         id: user._id,
       },
@@ -55,12 +55,15 @@ function FollowBtn({ user }) {
 
     if (location.pathname === "/home") {
       const getTweets = async () => {
-        const response = await axios.get("http://localhost:8080/api/tweets", {
-          headers: {
-            Authorization: `Bearer ${loggedUser.token}`,
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await axios.get(
+          "https://twitter-api-pi.vercel.app/api/tweets",
+          {
+            headers: {
+              Authorization: `Bearer ${loggedUser.token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
         if (response.data.tweets) {
           dispatch(actions.setTweets(response.data.tweets));
         }

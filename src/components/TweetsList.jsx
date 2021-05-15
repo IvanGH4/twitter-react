@@ -13,12 +13,15 @@ function TweetsList() {
 
   useEffect(() => {
     const getTweets = async () => {
-      const response = await axios.get("http://localhost:8080/api/tweets", {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.get(
+        "https://twitter-api-pi.vercel.app/api/tweets",
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (response.data.tweets) {
         dispatch(actions.setTweets(response.data.tweets));
       }

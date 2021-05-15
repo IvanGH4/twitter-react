@@ -17,7 +17,7 @@ function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post(
-      "http://localhost:8080/api/users",
+      "https://twitter-api-pi.vercel.app/api/users",
       {
         firstName,
         lastName,

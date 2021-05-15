@@ -28,7 +28,7 @@ function SingleTweet({ tweet }) {
       })
     );
     await axios.post(
-      "http://localhost:8080/api/tweets/comments",
+      "https://twitter-api-pi.vercel.app/api/tweets/comments",
       {
         text: comment,
         author: user.userName,

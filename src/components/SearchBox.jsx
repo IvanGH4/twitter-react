@@ -16,12 +16,15 @@ function SearchBox() {
 
   useEffect(() => {
     const getUsers = async () => {
-      const response = await axios.get("http://localhost:8080/api/index", {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.get(
+        "https://twitter-api-pi.vercel.app/api/index",
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setUsers(response.data.users);
     };
     getUsers();

@@ -38,7 +38,7 @@ function ProfilePage() {
     formData.append("bio", bio);
     await axios({
       method: "PATCH",
-      url: `http://localhost:8080/api/users/profile`,
+      url: `https://twitter-api-pi.vercel.app/api/users/profile`,
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
@@ -51,7 +51,7 @@ function ProfilePage() {
 
   const getUser = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/users/profile",
+      "https://twitter-api-pi.vercel.app/api/users/profile",
       {
         params: {
           username: username,
@@ -74,7 +74,7 @@ function ProfilePage() {
 
       const getUserTweets = async () => {
         const response = await axios.get(
-          "http://localhost:8080/api/users/profile/tweets",
+          "https://twitter-api-pi.vercel.app/api/users/profile/tweets",
           {
             params: {
               userId: singleUser._id,
