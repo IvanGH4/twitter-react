@@ -10,6 +10,7 @@ import SingleTweet from "../components/SingleTweet";
 import { useToasts } from "react-toast-notifications";
 import "../components/RightSidebar.css";
 import actions from "../redux/actions/tweetActions";
+import currUserActions from "../redux/actions/currUserActions";
 
 function ProfilePage() {
   const [singleUser, setSingleUser] = useState();
@@ -22,6 +23,7 @@ function ProfilePage() {
 
   const user = useSelector((state) => state.user);
   const tweets = useSelector((state) => state.tweets);
+  const currentUser = useSelector((state) => state.currentUser);
 
   let { username } = useParams();
 
@@ -60,6 +62,7 @@ function ProfilePage() {
         },
       }
     );
+    dispatch(currUserActions.setCurrUser(response.data.user));
     setSingleUser(response.data.user);
   };
 
@@ -173,7 +176,7 @@ function ProfilePage() {
                   data-bs-target="#exampleModal"
                   style={{ color: "rgb(107, 125, 140)" }}
                 >
-                  {singleUser.following.length} siguiendo
+                  {currentUser.following.length} siguiendo
                 </button>
 
                 <span className="fw-bold text-light me-2"></span>
@@ -184,7 +187,7 @@ function ProfilePage() {
                   data-bs-target="#exampleModal"
                   style={{ color: "rgb(107, 125, 140)" }}
                 >
-                  {singleUser.followers.length} seguidores
+                  {currentUser.followers.length} seguidores
                 </button>
               </div>
               <div

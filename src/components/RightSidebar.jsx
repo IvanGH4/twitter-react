@@ -5,12 +5,15 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import logo from "../logo.svg";
 import FollowBtn from "./FollowBtn";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function RightSidebar() {
   const [users, setUsers] = useState([]);
 
   const user = useSelector((state) => state.user);
+  const currentUser = useSelector((state) => state.currentUser);
+
+  const location = useLocation();
 
   useEffect(() => {
     const getUsers = async () => {
@@ -27,10 +30,10 @@ function RightSidebar() {
 
   return (
     <div
-      className="col-md-3 right-sidebar py-4"
+      className="col-md-3 right-sidebar py-4 "
       // style={{ height: "100vh", overflowY: "auto" }}
     >
-      <aside>
+      <aside className="position-sticky sticky-top">
         <SearchBox />
         <div className="my-3">
           <div className="list-group">
@@ -89,47 +92,58 @@ function RightSidebar() {
               <h4 className="fw-bold">A quién seguir</h4>
             </div>
             {users &&
-              users.map((user) => {
-                return (
-                  <div
-                    key={user._id}
-                    className="list-group-item list-group-item d-flex justify-content-between align-items-center trending py-2"
-                  >
-                    <div className="d-flex">
-                      <div>
-                        <img
-                          className="img-fluid rounded-circle"
-                          src={user.profilePicture ? user.profilePicture : logo}
-                          alt={user.userName}
-                          style={{ width: "50px", height: "50px" }}
-                        />
-                      </div>
-                      <div className="ms-1">
-                        <Link to={`/perfil/${user.userName}`}>
-                          {" "}
-                          <h6
+              users
+                .filter((user) => user.userName !== currentUser.userName)
+                .map((user) => {
+                  return (
+                    <div
+                      key={user._id}
+                      className="list-group-item list-group-item d-flex justify-content-between align-items-center trending py-2"
+                    >
+                      <div className="d-flex">
+                        <div>
+                          <img
+                            className="img-fluid rounded-circle"
+                            src={
+                              user.profilePicture ? user.profilePicture : logo
+                            }
+                            alt={user.userName}
+                            style={{ width: "50px", height: "50px" }}
+                          />
+                        </div>
+                        <div className="ms-1">
+                          <Link to={`/perfil/${user.userName}`}>
+                            {" "}
+                            <h6
+                              style={{
+                                width: "90px",
+                                whiteSpace: "nowrap",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                              }}
+                            >
+                              {user.firstName + " " + user.lastName}
+                            </h6>
+                          </Link>
+
+                          <div
                             style={{
-                              width: "90px",
+                              width: "70px",
                               whiteSpace: "nowrap",
                               overflow: "hidden",
                               textOverflow: "ellipsis",
                             }}
                           >
-                            {user.firstName + " " + user.lastName}
-                          </h6>
-                        </Link>
-
-                        <div>
-                          <small>@{user.userName}</small>
+                            <small>@{user.userName}</small>
+                          </div>
                         </div>
                       </div>
+                      <div className="d-flex align-items-start">
+                        <FollowBtn user={user} />
+                      </div>
                     </div>
-                    <div className="d-flex align-items-start">
-                      <FollowBtn user={user} />
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
           </div>
 
           <div className="text-secondary">

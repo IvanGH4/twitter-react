@@ -111,7 +111,9 @@ function LeftSidebar() {
               window.location.reload();
             }}
           >
-            <span className="text-white">Salir</span>
+            <span className="text-white fw-bold ms-3">
+              <i class="fas fa-sign-out-alt"></i> Salir
+            </span>
           </button>
         </li>
       </ul>

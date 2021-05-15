@@ -28,6 +28,13 @@ const tweetReducer = (state = INITIAL_STATE, action) => {
           tweetBeingLiked.likes.push(action.payload.userId);
         }
       });
+    case "UPDATE_COMMENT":
+      return produce(state, (draft) => {
+        let tweetBeingCommented = draft.find(
+          (tweet) => tweet._id === action.payload.tweetId
+        );
+        tweetBeingCommented.comments.push(action.payload.comment);
+      });
     case "DELETE_TWEET":
       // return produce(state, (draft) => {
       //   draft.filter((tweet) => tweet._id !== action.payload);

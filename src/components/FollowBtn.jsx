@@ -1,22 +1,45 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import actions from "../redux/actions/tweetActions";
+import currUserActions from "../redux/actions/currUserActions";
 import { useLocation } from "react-router-dom";
 
 function FollowBtn({ user }) {
-  console.log(user);
+  console.log("user", user);
   const loggedUser = useSelector((state) => state.user);
+  const currentUser = useSelector((state) => state.currentUser);
   const [isFollowing, setIsFollowing] = useState(
     user.followers.some((follower) => follower === loggedUser.userId)
   );
 
-  const dispatch = useDispatch();
-
   const location = useLocation();
+
+  useEffect(() => {
+    if (currentUser && location.pathname !== "/home") {
+      if (
+        currentUser.followers.some(
+          (follower) => follower._id === loggedUser.userId
+        )
+      ) {
+        setIsFollowing(true);
+      } else {
+        setIsFollowing(false);
+      }
+    } else {
+      if (user.followers.some((follower) => follower === loggedUser.userId)) {
+        setIsFollowing(true);
+      } else {
+        setIsFollowing(false);
+      }
+    }
+  }, []);
+
+  const dispatch = useDispatch();
 
   const handleClick = async () => {
     setIsFollowing(!isFollowing);
+    dispatch(currUserActions.followCurrUser(loggedUser.userId));
     await axios.patch(
       "http://localhost:8080/api/users",
       {
