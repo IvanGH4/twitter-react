@@ -7,10 +7,18 @@ import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import ExplorePage from "./pages/ExplorePage";
+import Navbar from "./components/Navbar";
+import { useState } from "react";
+import LeftSidebarMobile from "./components/LeftSidebarMobile";
 
 function App() {
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <Router>
+      <Navbar setShowMenu={setShowMenu} showMenu={showMenu} />
+
+      <LeftSidebarMobile showMenu={showMenu} />
+
       <PublicRoute restricted={true} component={LoginPage} exact path="/" />
       <Switch>
         <PrivateRoute path="/home" component={HomePage} />

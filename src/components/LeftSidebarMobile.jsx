@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./LeftSidebar.css";
 
-function LeftSidebar() {
+function LeftSidebarMobile({ showMenu }) {
   const user = useSelector((state) => state.user);
 
   return (
-    <aside className="col-md-3 izq d-none d-md-block">
+    <aside
+      className={`col-md-3 izq sidebarMobile ${showMenu ? "showMenu" : ""}`}
+    >
       <ul className="izq__ul d-flex flex-column justify-content-start align-items-start p-0 m-0">
         <li className="izq__li">
           <Link className="izq__a" to="/home">
@@ -121,4 +123,4 @@ function LeftSidebar() {
   );
 }
 
-export default LeftSidebar;
+export default LeftSidebarMobile;

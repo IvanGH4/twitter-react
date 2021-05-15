@@ -33,7 +33,7 @@ function RightSidebar() {
 
   return (
     <div
-      className="col-md-3 right-sidebar py-4 "
+      className="col-md-3 right-sidebar py-4 d-none d-md-block"
       // style={{ height: "100vh", overflowY: "auto" }}
     >
       <aside className="position-sticky sticky-top">
