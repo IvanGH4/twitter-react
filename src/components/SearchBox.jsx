@@ -10,9 +10,13 @@ function SearchBox() {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  let termFiltered;
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
+  termFiltered = users.filter((user) =>
+    user.userName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   useEffect(() => {
     const getUsers = async () => {
@@ -48,7 +52,7 @@ function SearchBox() {
       </form>
       <div
         className={`search-results text-white p-2 rounded ${
-          searchTerm.length > 0 && "show"
+          searchTerm.length > 0 && termFiltered.length > 0 && "show"
         }`}
       >
         {users
