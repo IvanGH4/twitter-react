@@ -64,7 +64,7 @@ function TweetCreator() {
             <form id="submit-tweet" onSubmit={handleSubmit}>
               <div className="form-floating">
                 <textarea
-                  className="text-light"
+                  className="text-light mb-2"
                   name=""
                   id="tweet"
                   cols="50"
