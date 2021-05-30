@@ -63,7 +63,7 @@ function RightSidebar() {
                 <div>
                   <small>Tendencia en Uruguay</small>
                 </div>
-                <h6>BIOS no puede con HACK</h6>
+                <h6>Desarrollo web</h6>
                 <div>
                   <small>1.72 M tweets</small>
                 </div>
@@ -78,7 +78,7 @@ function RightSidebar() {
                   <small>Tendencia en Uruguay</small>
                 </div>
                 <h6>
-                  Usar <code className="text-light">br</code>{" "}
+                  Node.js
                 </h6>
                 <div>
                   <small>1.72 M tweets</small>
